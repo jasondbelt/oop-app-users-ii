@@ -4,11 +4,11 @@ class User:
     posts = []
 
     # add specified instance attributes
-    def __init__(self, name, email, drivers_license, user_posts=[]):
+    def __init__(self, name, email, drivers_license, User_posts=[]):
         self.Name = name
         self.Email = email
         self.Drivers_license = drivers_license
-        self.User_posts = user_posts
+        self.User_posts = User_posts
 
     # print string representation of objects
     def __repr__(self):
