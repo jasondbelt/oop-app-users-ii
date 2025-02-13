@@ -1,78 +1,76 @@
-# Create User Class
+# your improved User class goes here
 class User:
-    # class attributes
-    posts = []
-
-    # add specified instance attributes
-    def __init__(self, name, email, drivers_license):
-        self.Name = name
-        self.Email = email
-        self.Drivers_license = drivers_license
-        self.User_posts = []
-
-    # print string representation of objects
-    def __repr__(self):
-        print(f"All Posts: {User.posts} | User's Posts: {self.User_posts}")
-
-    # instance method to create user post
-    def create_a_post(self):
-        title = input("Please enter post title: ")
-        content = input("Please enter post content: ")
-        id = str(len(User.posts) + 1)
-        new_post_dict = {id: [title, content]} 
-        User.posts.append(new_post_dict)
-        self.User_posts.append(new_post_dict)
-        print("Posted Successfully!")
-
-     # print all class posts
-    def see_all_posts(self):
-        if len (User.posts) > 0:
-            print(f"{User.posts}")
-        else:
-            return None
-
-    # print single instance user's posts, NOT all posts
-    def see_my_posts(self):
-        if len (self.User_posts) > 0:
-            print(f"{self.User_posts}")
-        else:
-            return None
-
-
-    def delete_a_post(self):
-        deleted_post = []
-        # deleting by title
-        title = input("Please enter post title you want to delete: ")
+    posts=[]
+    
+    def __init__(self,name, email, drivers_license):
+        self.Name=name
+        self.Email=email
+        self.Drivers_license=drivers_license
+        self.User_posts=[]
         
-        try:
-            # loops through User.posts and appends the deleted post to deleted_post variable
-            for i in range(len(User.posts)):
-                #if title and object title matches
-                if User.posts[i][(str(i+1))][0] == title:
-                    deleted_post.append(User.posts[i])
-            if len(deleted_post) == 0:
-                print("Post Doesn't Exist")
-            # actually deletes post from class and instance variable
-            for item in deleted_post:
-                while item in User.posts:
-                    User.posts.remove(item)
-                    self.User_posts.remove(item)
-                    print("Post Deleted Successfully")
-        except ValueError:
-            User.posts.append(deleted_post)
-            self.User_posts.append(deleted_post)
-            print("Can't Delete Someone Else's Post")
+        
+    def create_a_post(self):
+        id=len(self.posts)
+        user_title=input("Please enter the title of your post:\n")
+        user_body=input("Please enter the content of your post:\n")
+        self.posts.append({"id":id,"title":user_title, "content":user_body})
+        self.User_posts.append({"id":id,"title":user_title, "content":user_body})
+        
+        
+    def delete_a_post(self):
+        id=int(input("Please enter the ID of the post you would like to delete:\n"))
+        for p in self.User_posts:
+            print(f'user posts {p}')
+            if p['id']== id:
+                print(f'inside if User_posts')
+                x = self.User_posts.remove(p)
+                print(x)
+        for p in self.posts:
+            print(f'posts {p}')
+            if p['id']==id:
+                print(f'inside if posts')
+                y = self.posts.remove(p)
+                print(y)
+        
+      
+         
+    @classmethod
+    def see_all_posts(self):
+        for i in self.posts:
+            print(f"ID: [{i['id']}] Title: {i['title']}\nContent:\n{i['content']}")
+        
+    def see_my_posts(self):
+        for i in self.User_posts:
+            print(f"ID: [{i['id']}] Title: {i['title']}\nContent:\n{i['content']}")
             
-# input = iter(["Johns †i†le", "I Just joined OOPX"])
+            
 # user = User("John", "john@email.com", "FDUI87")
-# user2 = User("Jason", "jason@email.com", "12345")
-# user.create_a_post() 
-# user2.create_a_post()
-# user.see_my_posts() 
-# user.see_all_posts() 
+# user_two = User("Adam", "adam@email.com", "123")
+# # # # # input = iter(["Johns †i†le", "I Just joined OOPX"])
+# user.create_a_post()
+# user_two.create_a_post()
+# user.see_my_posts()
+# user.see_all_posts()
+# # # # # input = iter([1])
 # user.delete_a_post()
+# user.see_my_posts()
 # user.see_all_posts()
 
-# FAILED test_User.py::test_delete_post - AssertionError: assert 1 == 0
-# FAILED test_User.py::test_see_all_posts - AssertionError: assert 1 == 0
-# FAILED test_User.py::test_see_my_posts - AssertionError: assert 1 == 3
+# user2 = User(**{"name":"Mike", "email":"mike@email.com", "drivers_license":"FDUI87"})
+# user3 = User(**{"name":"Zack", "email":"zack@email.com", "drivers_license":"FDUI87"}) 
+
+# user.see_all_posts()
+# # input = iter(["Zack åttåck", "B1@ck H@t"])
+# user3.create_a_post()
+# # input = iter(["Mikes πost", "OOPX Founder"])
+# user2.create_a_post()
+# # input = iter(["Johns †i†le", "I Just joined OOPX"])
+# user.create_a_post()
+# # input = iter(["Zack åttåck", "B1@ck H@t"])
+# user.create_a_post()
+# # input = iter(["Mikes πost", "OOPX Founder"])
+# user.create_a_post()
+# # input = iter(["Johns †i†le", "I Just joined OOPX"])
+# user.create_a_post()
+# user.see_all_posts()
+
